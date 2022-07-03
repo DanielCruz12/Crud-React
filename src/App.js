@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { TasksCreator } from "./components/TasksCreator";
 
 function App() {
+  const [listarTareas, setListarTareas] = useState([
+    { name: "new1" },
+    { name: "new2" },
+    { name: "new3" },
+  ]);
+
+  //si no existe, se puede agregar
+  const crearTareas = (nombreTarea) => {
+    if (!listarTareas.find((task) => task.name === nombreTarea))
+      setListarTareas([...listarTareas, { name: nombreTarea }]);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TasksCreator crearTareas={crearTareas}></TasksCreator>
+
+      <table>
+        <thead>
+          <tr>
+            <th>tasks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listarTareas.map((tareas) => (
+            <tr key={tareas.name}>
+              <td>{tareas.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
