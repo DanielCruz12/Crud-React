@@ -1,19 +1,28 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TasksCreator } from "./components/TasksCreator";
 
 function App() {
-  const [listarTareas, setListarTareas] = useState([
-    { name: "new1" },
-    { name: "new2" },
-    { name: "new3" },
-  ]);
+  const [listarTareas, setListarTareas] = useState([]);
 
   //si no existe, se puede agregar
   const crearTareas = (nombreTarea) => {
     if (!listarTareas.find((task) => task.name === nombreTarea))
       setListarTareas([...listarTareas, { name: nombreTarea }]);
   };
+  
+  useEffect(() => {
+    let data = localStorage.getItem('tareas')
+      if(data){
+        setListarTareas(JSON.parse(data));
+      }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('tareas', JSON.stringify(listarTareas))
+  }, [listarTareas])
+
+  
   return (
     <div className="App">
       <TasksCreator crearTareas={crearTareas}></TasksCreator>

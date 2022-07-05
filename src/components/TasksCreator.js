@@ -5,7 +5,7 @@ export const TasksCreator = ({crearTareas}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     crearTareas(nuevoNombreTarea);
-    localStorage.setItem("task", nuevoNombreTarea);
+    //localStorage.setItem("task", nuevoNombreTarea);
     setNuevoNombreTarea("");
   };
 
