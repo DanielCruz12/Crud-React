@@ -1,46 +1,44 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { TasksCreator } from "./components/TasksCreator";
+import { TaskTable } from "./components/TaskTable";
 
 function App() {
-  const [listarTareas, setListarTareas] = useState([]);
+  const [listarTareas, setListarTareas] = useState([
+    {
+      name: "tarea1",
+      done: true,
+    },
+  ]);
 
   //si no existe, se puede agregar
   const crearTareas = (nombreTarea) => {
     if (!listarTareas.find((task) => task.name === nombreTarea))
-      setListarTareas([...listarTareas, { name: nombreTarea }]);
+      setListarTareas([...listarTareas, { name: nombreTarea, done: false }]);
   };
-  
-  useEffect(() => {
-    let data = localStorage.getItem('tareas')
-      if(data){
-        setListarTareas(JSON.parse(data));
-      }
-  }, [])
+
+  const ToggleTask= (tarea) => {
+    setListarTareas(
+      listarTareas.map(t => (t.name === tarea.name) ? {...t, done: !t.done} : t )
+    )
+  }
 
   useEffect(() => {
-    localStorage.setItem('tareas', JSON.stringify(listarTareas))
-  }, [listarTareas])
+    let data = localStorage.getItem("tareas");
+    if (data) {
+      setListarTareas(JSON.parse(data));
+    }
+  }, []);
 
-  
+  useEffect(() => {
+    localStorage.setItem("tareas", JSON.stringify(listarTareas));
+  }, [listarTareas]);
+
   return (
     <div className="App">
       <TasksCreator crearTareas={crearTareas}></TasksCreator>
-
-      <table>
-        <thead>
-          <tr>
-            <th>tasks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {listarTareas.map((tareas) => (
-            <tr key={tareas.name}>
-              <td>{tareas.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TaskTable tasks={listarTareas} ToggleTask={ToggleTask}></TaskTable>
+      <TaskTable tasks={listarTareas} ToggleTask={ToggleTask}></TaskTable>
     </div>
   );
 }
