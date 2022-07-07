@@ -1,18 +1,24 @@
 import { TaskRow } from "./TaskRow";
 
-export const TaskTable = ({ tasks, ToggleTask }) => {
+export const TaskTable = ({ tasks, ToggleTask, showCompleted = false }) => {
+  const taskTableRow = (doneValue) => {
+    return tasks
+      .filter((tarea) => tarea.done === doneValue)
+      .map((tarea) => (
+        <TaskRow tarea={tarea} key={tarea.name} ToggleTask={ToggleTask} />
+      ));
+  };
+
   return (
     <table>
       <thead>
         <tr>
-          <th>tasks</th>
+          {showCompleted === true && (
+            <th>tareas completas</th>
+          ) }
         </tr>
       </thead>
-      <tbody>
-        {tasks.map((tarea) => (
-          <TaskRow tarea={tarea} key={tarea.name} ToggleTask={ToggleTask}/>
-        ))}
-      </tbody>
+      <tbody>{taskTableRow(showCompleted)}</tbody>
     </table>
   );
 };

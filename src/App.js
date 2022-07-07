@@ -4,12 +4,9 @@ import { TasksCreator } from "./components/TasksCreator";
 import { TaskTable } from "./components/TaskTable";
 
 function App() {
-  const [listarTareas, setListarTareas] = useState([
-    {
-      name: "tarea1",
-      done: true,
-    },
-  ]);
+  const [listarTareas, setListarTareas] = useState([]);
+
+  const [showCompleted, setShowCompleted] = useState(false);
 
   //si no existe, se puede agregar
   const crearTareas = (nombreTarea) => {
@@ -37,8 +34,17 @@ function App() {
   return (
     <div className="App">
       <TasksCreator crearTareas={crearTareas}></TasksCreator>
+        <label>tareas incompletas</label>
       <TaskTable tasks={listarTareas} ToggleTask={ToggleTask}></TaskTable>
-      <TaskTable tasks={listarTareas} ToggleTask={ToggleTask}></TaskTable>
+      <div>
+        <input onChange={e => setShowCompleted(!showCompleted)} type= "checkbox"></input>
+        <label>Mostrar tareas completas</label>
+      </div>
+      {
+        showCompleted === true && (
+          <TaskTable tasks={listarTareas} ToggleTask={ToggleTask} showCompleted={true}></TaskTable>
+        )
+      }
     </div>
   );
 }
