@@ -100,12 +100,12 @@ export const Table = ({
                     </li>
                   </ul>
 
-                  <ul className="list-group list-group-horizontal rounded-0 bg-transparent">
                     {listarTareas.map((tareas) => (
-                      <>
+                  <ul  key={tareas.name} className="list-group list-group-horizontal rounded-0 bg-transparent">
+                      <div>
                         <li
                           className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent"
-                          key={tareas.name}
+                         
                         >
                           <div className="form-check">
                             <input
@@ -123,9 +123,9 @@ export const Table = ({
                         <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                           <p className="lead fw-normal mb-0">{tareas.name}</p>
                         </li>
-                      </>
-                    ))}
+                      </div>
                   </ul>
+                    ))}
 
                   {/* footer */}
                   <ul className="list-group list-group-horizontal rounded-0 mb-2">

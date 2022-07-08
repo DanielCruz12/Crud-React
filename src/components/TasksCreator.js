@@ -39,7 +39,7 @@ export const TasksCreator = () => {
 
       </div>
       
-      <Table listarTareas={listarTareas} toggleTask={toggleTask} ></Table>
+      <Table listarTareas={listarTareas} toggleTask={toggleTask} handleSubmit={handleSubmit}></Table>
     </div>
   );
 };
