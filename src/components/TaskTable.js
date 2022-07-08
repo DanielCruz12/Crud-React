@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 export const TaskTable = ({
   crearTareas,
@@ -10,10 +10,17 @@ export const TaskTable = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    crearTareas(nuevoNombreTarea);
+    if (nuevoNombreTarea.trim().length > 0) {
+      crearTareas(nuevoNombreTarea);
+      alert(" tarea agregada");
+      setNuevoNombreTarea("");
+    } else {
+      alert("campos vacios");
+      setNuevoNombreTarea("");
+    }
     //localStorage.setItem("task", nuevoNombreTarea);
-    setNuevoNombreTarea("");
   };
+
   //   const taskTableRow = (doneValue) => {
   //     return tasks
   //       .filter((tarea) => tarea.done === doneValue)
@@ -65,7 +72,10 @@ export const TaskTable = ({
                             }
                           ></input>
                           <div>
-                            <button className="btn btn-primary" type="submit">
+                            <button
+                              className="btn btn-primary m-2"
+                              type="submit"
+                            >
                               Añadir
                             </button>
                           </div>
@@ -107,9 +117,7 @@ export const TaskTable = ({
                       </div>
                     </li>
                     <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
-                      <p className="lead fw-normal mb-0">
-                        Buy groceries for next week
-                      </p>
+                      <p className="lead fw-normal mb-0">Buy groceries</p>
                     </li>
                   </ul>
 
@@ -126,13 +134,30 @@ export const TaskTable = ({
                       </div>
                     </li>
                     <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
-                      <p className="lead fw-normal mb-0">Renew car insurance</p>
+                      <p className="lead fw-normal mb-0">Renew car</p>
                     </li>
                   </ul>
 
-                  <ul className="list-group list-group-horizontal rounded-0 bg-transparent">
-                    {tasks.map((tareas) => (
-                      <div key={tareas.name}>
+                  <ul className="list-group list-group-horizontal rounded-0">
+                    <li className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input me-0"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked2"
+                          aria-label="..."
+                        />
+                      </div>
+                    </li>
+                    <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                      <p className="lead fw-normal mb-0">Buy some cloth</p>
+                    </li>
+                  </ul>
+
+                  {tasks.map((tareas) => (
+                    <ul className="list-group list-group-horizontal rounded-0 bg-transparent">
+                      <Fragment key={tareas.name}>
                         <li className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
                           <div className="form-check">
                             <input
@@ -149,9 +174,9 @@ export const TaskTable = ({
                         <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                           <p className="lead fw-normal mb-0">{tareas.name}</p>
                         </li>
-                      </div>
-                    ))}
-                  </ul>
+                      </Fragment>
+                    </ul>
+                  ))}
 
                   {/* footer
                   <ul className="list-group list-group-horizontal rounded-0 mb-2">

@@ -7,7 +7,6 @@ export const Table = ({
 }) => {
   return (
     <>
-
       <section className="vh-100">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -71,14 +70,13 @@ export const Table = ({
                           type="checkbox"
                           value=""
                           id="flexCheckChecked1"
-                          aria-label="..."
-                         
+                          aria-label="..."                         
                         />
                       </div>
                     </li>
                     <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                       <p className="lead fw-normal mb-0">
-                        Buy groceries for next week
+                        Buy groceries 
                       </p>
                     </li>
                   </ul>
@@ -96,17 +94,31 @@ export const Table = ({
                       </div>
                     </li>
                     <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
-                      <p className="lead fw-normal mb-0">Renew car insurance</p>
+                      <p className="lead fw-normal mb-0">Renew car </p>
+                    </li>
+                  </ul>
+
+                  <ul className="list-group list-group-horizontal rounded-0">
+                    <li className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input me-0"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked2"
+                          aria-label="..."
+                        />
+                      </div>
+                    </li>
+                    <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                      <p className="lead fw-normal mb-0">Renewinsurance</p>
                     </li>
                   </ul>
 
                     {listarTareas.map((tareas) => (
-                  <ul  key={tareas.name} className="list-group list-group-horizontal rounded-0 bg-transparent">
-                      <div>
+                  <ul  key={tareas.name} className="list-group list-group-horizontal rounded-0 bg-transparent">                      
                         <li
-                          className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent"
-                         
-                        >
+                          className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
                           <div className="form-check">
                             <input
                               className="form-check-input me-0"
@@ -121,9 +133,8 @@ export const Table = ({
                         </li>
 
                         <li className="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
-                          <p className="lead fw-normal mb-0">{tareas.name}</p>
+                          <p className="lead fw-normal mb-0">pepe compra</p>
                         </li>
-                      </div>
                   </ul>
                     ))}
 

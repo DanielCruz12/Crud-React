@@ -22,27 +22,27 @@ export const TasksCreator = ({ crearTareas }) => {
         <button type="submit">Submit</button>
       </form> */}
 
-<form className="pb-2" onSubmit={handleSubmit}>
-          <div className="card">
-            <div className="card-body">
-              <div className="d-flex flex-row align-items-center">
-                <input
-                  className="form-control form-control-lg"
-                  id="exampleFormControlInput1"
-                  type="text"
-                  placeholder="añade una tarea"
-                  value={nuevoNombreTarea}
-                  onChange={(e) => setNuevoNombreTarea(e.target.value)}
-                ></input>
-                <div>
-                  <button className="btn btn-primary" type="submit">
-                    Añadir
-                  </button>
-                </div>
+      <form className="pb-2" onSubmit={handleSubmit}>
+        <div className="card">
+          <div className="card-body">
+            <div className="d-flex flex-row align-items-center">
+              <input
+                className="form-control form-control-lg"
+                id="exampleFormControlInput1"
+                type="text"
+                placeholder="añade una tarea"
+                value={nuevoNombreTarea}
+                onChange={(e) => setNuevoNombreTarea(e.target.value)}
+              ></input>
+              <div>
+                <button className="btn btn-primary" type="submit">
+                  Añadir
+                </button>
               </div>
             </div>
           </div>
-        </form>
+        </div>
+      </form>
     </>
   );
 };
