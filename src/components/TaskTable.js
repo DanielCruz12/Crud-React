@@ -1,13 +1,44 @@
-export const Table = ({
-  listarTareas,
-  toggleTask,
-  handleSubmit,
-  setNuevoNombreTarea,
-  nuevoNombreTarea,
-}) => {
-  return (
-    <>
+import { useState } from "react";
 
+export const TaskTable = ({
+  crearTareas,
+  tasks,
+  ToggleTask,
+  showCompleted = false,
+}) => {
+  const [nuevoNombreTarea, setNuevoNombreTarea] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    crearTareas(nuevoNombreTarea);
+    //localStorage.setItem("task", nuevoNombreTarea);
+    setNuevoNombreTarea("");
+  };
+  //   const taskTableRow = (doneValue) => {
+  //     return tasks
+  //       .filter((tarea) => tarea.done === doneValue)
+  //     };
+
+  //     const showTask = () => {
+  //         tasks.map((tarea) => (
+  //           <TaskRow tarea={tarea} key={tarea.name} ToggleTask={ToggleTask} />
+  //         ));
+
+  //   }
+
+  return (
+    // <table>
+    //   <thead>
+    //     <tr>
+    //       {showCompleted === true && (
+    //         <th>tareas completas</th>
+    //       ) }
+    //     </tr>
+    //   </thead>
+    //   <tbody>{taskTableRow(showCompleted)}</tbody>
+    // </table>
+
+    <>
       <section className="vh-100">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -72,7 +103,6 @@ export const Table = ({
                           value=""
                           id="flexCheckChecked1"
                           aria-label="..."
-                         
                         />
                       </div>
                     </li>
@@ -100,13 +130,10 @@ export const Table = ({
                     </li>
                   </ul>
 
-                    {listarTareas.map((tareas) => (
-                  <ul  key={tareas.name} className="list-group list-group-horizontal rounded-0 bg-transparent">
-                      <div>
-                        <li
-                          className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent"
-                         
-                        >
+                  <ul className="list-group list-group-horizontal rounded-0 bg-transparent">
+                    {tasks.map((tareas) => (
+                      <div key={tareas.name}>
+                        <li className="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
                           <div className="form-check">
                             <input
                               className="form-check-input me-0"
@@ -114,8 +141,7 @@ export const Table = ({
                               value=""
                               id="flexCheckChecked1"
                               aria-label="..."
-                              checked
-                              onChange={() => toggleTask(tareas)}
+                              onChange={() => ToggleTask(tareas)}
                             />
                           </div>
                         </li>
@@ -124,8 +150,8 @@ export const Table = ({
                           <p className="lead fw-normal mb-0">{tareas.name}</p>
                         </li>
                       </div>
-                  </ul>
                     ))}
+                  </ul>
 
                   {/* footer
                   <ul className="list-group list-group-horizontal rounded-0 mb-2">
@@ -140,7 +166,6 @@ export const Table = ({
             </div>
           </div>
         </div>
-        
       </section>
     </>
   );
